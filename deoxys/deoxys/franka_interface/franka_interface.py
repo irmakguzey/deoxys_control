@@ -92,6 +92,8 @@ class FrankaInterface:
         self._pub_port = general_cfg.NUC.SUB_PORT
         self._sub_port = general_cfg.NUC.PUB_PORT
 
+        # print('self._dict_: {} of the franka interface'.format(self.__dict__))
+
         self._gripper_pub_port = general_cfg.NUC.GRIPPER_SUB_PORT
         self._gripper_sub_port = general_cfg.NUC.GRIPPER_PUB_PORT
 
@@ -176,6 +178,7 @@ class FrankaInterface:
                 # message = self._subscriber.recv(flags=zmq.NOBLOCK)
                 message = self._subscriber.recv(**recv_kwargs)
                 franka_robot_state.ParseFromString(message)
+                # print('received franka state: {}'.format(franka_robot_state))
                 self._state_buffer.append(franka_robot_state)
             except:
                 pass
@@ -220,6 +223,8 @@ class FrankaInterface:
             time.sleep(0.05)
 
         logger.debug("Preprocess fnished")
+
+    # TODO: Create a fork and add it to NYU-robot-learning and make this
 
     def control(
         self,
@@ -378,6 +383,8 @@ class FrankaInterface:
             control_msg.termination = termination
 
             control_msg.state_estimator_msg.CopyFrom(state_estimator_msg)
+
+            print('control_msg: {}'.format(control_msg))
 
             msg_str = control_msg.SerializeToString()
             self._publisher.send(msg_str)

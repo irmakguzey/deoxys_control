@@ -56,6 +56,7 @@ def osc_move(robot_interface, controller_type, controller_cfg, target_pose, num_
         quat_diff = transform_utils.quat_distance(target_quat, current_quat)
         current_axis_angle = transform_utils.quat2axisangle(current_quat)
         axis_angle_diff = transform_utils.quat2axisangle(quat_diff)
+        
         action_pos = (target_pos - current_pos).flatten() * 10
         action_axis_angle = axis_angle_diff.flatten() * 1
         action_pos = np.clip(action_pos, -1.0, 1.0)

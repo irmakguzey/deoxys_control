@@ -23,22 +23,22 @@ def main():
     robot_interface = FrankaInterface(
         config_root + "/charmander.yml", use_visualizer=False
     )
-    logger.debug("Robot interface initalized")
+    logger.info("Robot interface initalized")
     position_only_gripper_move_by(robot_interface, delta_pos=[0.2, 0.05, 0], grasp=False)
-    logger.debug("First movement finished")
+    logger.info("First movement finished")
     position_only_gripper_move_by(robot_interface, delta_pos=[0.0, 0.0, -0.22], grasp=False)
-    logger.debug("Second movement finished")
+    logger.info("Second movement finished")
     position_only_gripper_move_by(robot_interface, delta_pos=[0.0, 0.0, 0.0], grasp=True)
-    logger.debug("Third movement finished")
+    logger.info("Third movement finished")
     position_only_gripper_move_by(robot_interface, delta_pos=[0.0, 0.0, 0.22], grasp=True)    
-    logger.debug("Forth movement finished")
+    logger.info("Forth movement finished")
     position_only_gripper_move_by(
         robot_interface, delta_pos=[-0.2, -0.05, 0.0], grasp=True
     )
     position_only_gripper_move_by(
         robot_interface, delta_pos=[0.0, 0.00, -0.10], grasp=True
     )    
-    logger.debug("Final movement finished")
+    logger.info("Final movement finished")
     position_only_gripper_move_by(
         robot_interface, delta_pos=[0.0, 0.0, 0.0], grasp=False
     )

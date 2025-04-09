@@ -509,6 +509,11 @@ def quat2axisangle(quat):
         # This is (close to) a zero degree rotation, immediately return
         return np.zeros(3)
 
+    # print('den: {}, quat[:3]: {}, math.acos(quat[3]): {}'.format(
+    #     den, quat[:3], math.acos(quat[3])
+    # ))
+    # print(f'2.0 * math.acos(quat[3]): {2.0 * math.acos(quat[3])}')
+    # print(f'quat[:3] * 2.0 * math.acos(quat[3]): {quat[:3] * 2.0 * math.acos(quat[3])}')
     return (quat[:3] * 2.0 * math.acos(quat[3])) / den
 
 
